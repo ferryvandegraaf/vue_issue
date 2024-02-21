@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Vuetify + CDN</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vuetify@3.5.3/dist/vuetify.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <script src="https://unpkg.com/vue@3.4.19/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@3.5.3/dist/vuetify.min.js"></script>
+    
+    <div id="app">
+
+          <v-list lines="one">
+            <v-list-item
+              v-for="item in routes"
+              :key="item.id"
+              :title="item.customerName"
+            ></v-list-item>
+          </v-list>
+
+          <v-table fixed-header height="600px">
+            <tbody>
+              <tr v-for="item in routes">
+                <td>{{item.customerName}}</td>
+              </tr>
+            </tbody>
+          </v-table>
+
+
+    </div>
+
+    <script>
+      const { createApp, ref } = Vue;
+      const { createVuetify } = Vuetify
+      const vuetify = createVuetify()
+
+      const app = createApp({
+        data: () => ({
+          routes: [{"id":1,"customerName":"Pietje puk", "orderNumber":"PF-123456789", "zipcode":"5388AA,18"},
+                   {"id":2,"customerName":"van de Graaf", "orderNumber":"TEST", "zipcode":"1234AA"}]
+        }),
+        setup() {
+          const date = ref();
+        }
+      });
+
+      app.use(vuetify).mount('#app')
+
+    </script>
+
+  </body>
+</html>
+
